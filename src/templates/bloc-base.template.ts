@@ -26,8 +26,8 @@ abstract class BlocBase {
   void dispose();
 }
 
-class BlocProvider<T extends BlocBase> extends StatefulWidget {
-  BlocProvider({
+class BlocVanillaProvider<T extends BlocBase> extends StatefulWidget {
+  BlocVanillaProvider({
     Key key,
     @required this.child,
     @required this.bloc,
