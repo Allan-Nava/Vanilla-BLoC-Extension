@@ -2,6 +2,8 @@
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/allan_nava)
 
+https://www.didierboelens.com/2018/12/reactive-programming-streams-bloc-practical-use-cases/
+
 This is the README for your extension "vanilla-bloc". After writing up a brief description, we recommend including the following sections.
 
 ## Features
