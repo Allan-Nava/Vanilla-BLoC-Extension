@@ -10,15 +10,28 @@
  *--------------------------------------------------------*/
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import {
+	commands,
+	ExtensionContext,
+	InputBoxOptions,
+	OpenDialogOptions,
+	QuickPickOptions,
+	Uri,
+	window
+  } from 'vscode';
 import * as _ from "lodash";
 import * as changeCase from "change-case";
 import * as mkdirp from "mkdirp";
 import { existsSync, lstatSync, writeFile } from "fs";
+import { 
+	getBlocTemplate,
+	getBlocStateTemplate,
+	getSnapshotTemplate
+} from './templates';
 ///
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
 	//
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
@@ -27,23 +40,66 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('vanilla-bloc.helloWorld', () => {
+	let disposable = commands.registerCommand('vanilla-bloc.helloWorld', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Vanilla BLoC!');
+		window.showInformationMessage('Hello World from Vanilla BLoC!');
 	});
 	//
 	context.subscriptions.push(disposable);
 	///
-	let newBloc = vscode.commands.registerCommand('vanilla-bloc.new-bloc', () => {
+	let newBloc = commands.registerCommand('vanilla-bloc.new-bloc', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
-
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Vanilla BLoC!');
+		window.showInformationMessage('Hello World from Vanilla BLoC!');
+		const blocName = await promptForBlocName();
+		if (_.isNil(blocName) || blocName.trim() === "") {
+			window.showErrorMessage("The bloc name must not be empty");
+			return;
+		}
+		let targetDirectory;
+		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
+			targetDirectory = await promptForTargetDirectory();
+			if (_.isNil(targetDirectory)) {
+				window.showErrorMessage("Please select a valid directory");
+				return;
+			}
+		} else {
+			targetDirectory = uri.fsPath;
+		}
 	});
 	//
 	context.subscriptions.push(newBloc);
+	///
+	let newSnapshot = commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		window.showInformationMessage('Hello World from Vanilla BLoC - Snapshot!');
+		let targetDirectory;
+		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
+			targetDirectory = await promptForTargetDirectory();
+			if (_.isNil(targetDirectory)) {
+				window.showErrorMessage("Please select a valid directory");
+				return;
+			}
+		} else {
+			targetDirectory = uri.fsPath;
+		}
+		try {
+			await generateSnapShotCode( targetDirectory,);
+			window.showInformationMessage(
+			  `Successfully Generated ${pascalCaseBlocName} Bloc`
+			);
+		} catch (error) {
+			window.showErrorMessage(
+			  `Error:
+			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
+			);
+			}
+	});
+	//
+	context.subscriptions.push(newSnapshot);
 	///
 }
 //
@@ -76,4 +132,72 @@ function createBlocTemplate(blocName: string, targetDirectory: string, ) {
 		resolve();
 	  });
 	});
+}
+///
+function promptForBlocName(): Thenable<string | undefined> {
+	const blocNamePromptOptions: InputBoxOptions = {
+	  prompt: "Vanilla Bloc Name",
+	  placeHolder: "counter"
+	};
+	return window.showInputBox(blocNamePromptOptions);
+}
+async function promptForTargetDirectory(): Promise<string | undefined> {
+	const options: OpenDialogOptions = {
+	  canSelectMany: false,
+	  openLabel: "Select a folder to create the bloc in",
+	  canSelectFolders: true
+	};
+  
+	return window.showOpenDialog(options).then(uri => {
+	  if (_.isNil(uri) || _.isEmpty(uri)) {
+		return undefined;
+	  }
+	  return uri[0].fsPath;
+	});
+}
+async function generateBlocCode(
+	blocName: string,
+	targetDirectory: string,
+  ) {
+	const blocDirectoryPath = `${targetDirectory}/bloc`;
+	if (!existsSync(blocDirectoryPath)) {
+	  await createDirectory(blocDirectoryPath);
+	}
+  
+	await Promise.all([
+	  //createBlocEventTemplate(blocName, targetDirectory,),
+	  //createBlocStateTemplate(blocName, targetDirectory, ),
+	  createBlocTemplate(blocName, targetDirectory,),    
+	]);
+}
+
+function createSnapTemplate( targetDirectory: string, ) {
+	const snakeCaseBlocName = changeCase.snakeCase("snapshot_helper.dart");
+	const targetPath = `${targetDirectory}`;
+	if (existsSync(targetPath)) {
+	  throw Error(`${snakeCaseBlocName} already exists`);
+	}
+	return new Promise(async (resolve, reject) => {
+	  writeFile(targetPath, getSnapshotTemplate(), "utf8", error => {
+		if (error) {
+		  reject(error);
+		  return;
+		}
+		resolve();
+	  });
+	});
+}
+async function generateSnapShotCode(
+	targetDirectory: string,
+  ) {
+	const blocDirectoryPath = `${targetDirectory}/bloc`;
+	if (!existsSync(blocDirectoryPath)) {
+	  await createDirectory(blocDirectoryPath);
+	}
+  
+	await Promise.all([
+	  //createBlocEventTemplate(blocName, targetDirectory,),
+	  //createBlocStateTemplate(blocName, targetDirectory, ),
+	  createSnapTemplate( targetDirectory,),    
+	]);
 }

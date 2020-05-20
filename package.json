@@ -11,7 +11,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension"
-	  },
+	},
 	"engines": {
 		"vscode": "^1.45.0"
 	},
@@ -40,15 +40,19 @@
 			{
 				"command": "vanilla-bloc.new-bloc",
 				"title": "Vanilla BLoC: New Bloc"
+			},
+			{
+				"command": "vanilla-bloc.new-snapshot",
+				"title": "Vanilla BLoC: New Snapshot"
 			}
 		],
 		"menus": {
 			"explorer/context": [
-			  {
-				"command": "vanilla-bloc.new-bloc",
-				"group": "blocGroup@1",
-				"when": "explorerResourceIsFolder"
-			  }
+				{
+					"command": "vanilla-bloc.new-bloc",
+					"group": "blocGroup@1",
+					"when": "explorerResourceIsFolder"
+				}
 			]
 		}
 	},
@@ -65,7 +69,7 @@
 		"@types/lodash": "^4.14.152",
 		"@types/mkdirp": "^1.0.0",
 		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.11.0",
+		"@types/node": "^13.13.8",
 		"@types/vscode": "^1.45.0",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
