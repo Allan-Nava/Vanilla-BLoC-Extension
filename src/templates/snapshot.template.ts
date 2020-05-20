@@ -7,6 +7,11 @@
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
+ * 
+ * Code provided by magicleon94
+ * https://gist.github.com/magicleon94/8ae4f73d42fe6c60c5f1f5c08fc20b39
+ * A simple helper to map states of a snapshot coming from a StreamBuilder 
+ * 
  *--------------------------------------------------------*/
 ///
 import * as changeCase from "change-case";
