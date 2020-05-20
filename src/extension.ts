@@ -15,7 +15,6 @@ import {
 	ExtensionContext,
 	InputBoxOptions,
 	OpenDialogOptions,
-	QuickPickOptions,
 	Uri,
 	window
   } from 'vscode';
@@ -40,19 +39,11 @@ export function activate(context: ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = commands.registerCommand('vanilla-bloc.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		window.showInformationMessage('Hello World from Vanilla BLoC!');
-	});
-	//
-	context.subscriptions.push(disposable);
-	///
-	let newBloc = commands.registerCommand('vanilla-bloc.new-bloc', async (uri: Uri) => {
+	commands.registerCommand('vanilla-bloc.new-bloc', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		window.showInformationMessage('Hello World from Vanilla BLoC!');
+		//window.showInformationMessage('Hello World from Vanilla BLoC!');
+		console.log("vanilla-bloc.new-bloc");
 		const blocName = await promptForBlocName();
 		if (_.isNil(blocName) || blocName.trim() === "") {
 			window.showErrorMessage("The bloc name must not be empty");
@@ -70,12 +61,12 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	//
-	context.subscriptions.push(newBloc);
 	///
-	let newSnapshot = commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
+	commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		window.showInformationMessage('Hello World from Vanilla BLoC - Snapshot!');
+		//window.showInformationMessage('Hello World from Vanilla BLoC - Snapshot!');
+		console.log("vanilla-bloc.new-snapshot");
 		let targetDirectory;
 		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
 			targetDirectory = await promptForTargetDirectory();
@@ -96,10 +87,9 @@ export function activate(context: ExtensionContext) {
 			  `Error:
 			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
 			);
-			}
+		}
 	});
 	//
-	context.subscriptions.push(newSnapshot);
 	///
 }
 //
@@ -108,14 +98,12 @@ export function deactivate() {}
 //
 function createDirectory(targetDirectory: string): Promise<void> {
 	return new Promise((resolve, reject) => {
-	  /*mkdirp(targetDirectory, error => {
-		if (error) {
-		  return reject(error);
-		}
-		resolve();
-	  });*/
-	  mkdirp(targetDirectory).then(made => resolve());
-		//console.log(`made directories, starting with ${made}`));
+	  mkdirp(targetDirectory, { mode: '0777' }).then(made => {
+		  if(made){
+			  return reject(made);
+		  }
+		  resolve();
+	  });
 	});
   }
 //
@@ -144,6 +132,7 @@ function promptForBlocName(): Thenable<string | undefined> {
 	return window.showInputBox(blocNamePromptOptions);
 }
 async function promptForTargetDirectory(): Promise<string | undefined> {
+	console.log("promptForTargetDirectory()");
 	const options: OpenDialogOptions = {
 	  canSelectMany: false,
 	  openLabel: "Select a folder to create the bloc in",
