@@ -89,7 +89,7 @@ export function activate(context: ExtensionContext) {
 		try {
 			await generateSnapShotCode( targetDirectory,);
 			window.showInformationMessage(
-			  `Successfully Generated ${pascalCaseBlocName} Bloc`
+			  `Successfully Generated Snapshot`
 			);
 		} catch (error) {
 			window.showErrorMessage(
@@ -108,12 +108,14 @@ export function deactivate() {}
 //
 function createDirectory(targetDirectory: string): Promise<void> {
 	return new Promise((resolve, reject) => {
-	  mkdirp(targetDirectory, error => {
+	  /*mkdirp(targetDirectory, error => {
 		if (error) {
 		  return reject(error);
 		}
 		resolve();
-	  });
+	  });*/
+	  mkdirp(targetDirectory).then(made => resolve());
+		//console.log(`made directories, starting with ${made}`));
 	});
   }
 //
