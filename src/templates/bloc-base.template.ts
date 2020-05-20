@@ -22,11 +22,11 @@ export function getBlocBaseTemplate(blocName: string,): string {
     return `
   import 'package:flutter/material.dart';
 
-abstract class BlocBase {
+abstract class BlocVanillaBase {
   void dispose();
 }
 
-class BlocVanillaProvider<T extends BlocBase> extends StatefulWidget {
+class BlocVanillaProvider<T extends BlocVanillaBase> extends StatefulWidget {
   BlocVanillaProvider({
     Key key,
     @required this.child,
@@ -37,16 +37,16 @@ class BlocVanillaProvider<T extends BlocBase> extends StatefulWidget {
   final T bloc;
 
   @override
-  _BlocProviderState<T> createState() => _BlocProviderState<T>();
+  _BlocVanillaProviderState<T> createState() => _BlocVanillaProviderState<T>();
 
-  static T of<T extends BlocBase>(BuildContext context){
-    _BlocProviderInherited<T> provider = context.getElementForInheritedWidgetOfExactType<_BlocProviderInherited<T>>()?.widget;
+  static T of<T extends BlocVanillaBase>(BuildContext context){
+    _BlocVanillaProviderInherited<T> provider = context.getElementForInheritedWidgetOfExactType<_BlocVanillaProviderInherited<T>>()?.widget;
 
     return provider?.bloc;
   }
 }
 
-class _BlocProviderState<T extends BlocBase> extends State<BlocProvider<T>>{
+class _BlocVanillaProviderState<T extends BlocVanillaBase> extends State<BlocVanillaProvider<T>>{
   @override
   void dispose(){
     widget.bloc?.dispose();
@@ -55,15 +55,15 @@ class _BlocProviderState<T extends BlocBase> extends State<BlocProvider<T>>{
   
   @override
   Widget build(BuildContext context){
-    return new _BlocProviderInherited<T>(
+    return new _BlocVanillaProviderInherited<T>(
       bloc: widget.bloc,
       child: widget.child,
     );
   }
 }
 
-class _BlocProviderInherited<T> extends InheritedWidget {
-  _BlocProviderInherited({
+class _BlocVanillaProviderInherited<T> extends InheritedWidget {
+  _BlocVanillaProviderInherited({
     Key key,
     @required Widget child,
     @required this.bloc,
@@ -72,7 +72,7 @@ class _BlocProviderInherited<T> extends InheritedWidget {
   final T bloc;
 
   @override
-  bool updateShouldNotify(_BlocProviderInherited oldWidget) => false;
+  bool updateShouldNotify(_BlocVanillaProviderInherited oldWidget) => false;
 }
 `;
 }
