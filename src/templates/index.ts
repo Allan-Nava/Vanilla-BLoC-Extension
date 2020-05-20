@@ -11,4 +11,6 @@
 export * from "./bloc-event.template";
 export * from "./bloc-state.template";
 export * from "./bloc.template";
+export * from './bloc-base.template';
+export * from './snapshot.template';
 ///
