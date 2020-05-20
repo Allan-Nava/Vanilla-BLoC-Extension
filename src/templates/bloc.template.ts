@@ -20,7 +20,7 @@ function getDefaultBlocTemplate(blocName: string) {
   const blocState = `${pascalCaseBlocName}State`;
   const blocEvent = `${pascalCaseBlocName}Event`;
   return `import 'dart:async';
-import 'package:bloc/bloc.dart';
+  
 import 'package:meta/meta.dart';
 part '${snakeCaseBlocName}_event.dart';
 part '${snakeCaseBlocName}_state.dart';
