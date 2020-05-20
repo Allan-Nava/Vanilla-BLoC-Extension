@@ -1,5 +1,7 @@
 # vanilla-bloc README
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/allan_nava)
+
 This is the README for your extension "vanilla-bloc". After writing up a brief description, we recommend including the following sections.
 
 ## Features
