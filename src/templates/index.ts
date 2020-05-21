@@ -13,4 +13,5 @@ export * from "./bloc-state.template";
 export * from "./bloc.template";
 export * from './bloc-base.template';
 export * from './snapshot.template';
+export * from './bloc-global-singleton-template';
 ///

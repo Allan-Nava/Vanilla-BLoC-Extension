@@ -5,11 +5,13 @@
 
 - Simple creation of Snapshot
 - Simple creation of BLoC Base with BLoCProvider
+- Simple creation of Singleton BLoC Base
 
 # Available commands
 
 - Creation of snapshot customized file
-- Creation of BLoC Base ( BLoC Base + BlocProvider )
+- Creation of Vanilla BLoC Base ( BLoC Base + BlocProvider )
+- Creation of Singleton Vanilla BLoC Base
 
 ## Known Issues
 

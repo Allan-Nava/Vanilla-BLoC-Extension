@@ -2,7 +2,7 @@
 	"name": "vanilla-bloc",
 	"displayName": "Vanilla BLoC",
 	"description": "Support for the BLoC command allows you to create a Vanilla BLoC and the Events/States",
-	"version": "0.0.11",
+	"version": "0.0.12",
 	"publisher": "Allan-Nava",
 	"bugs": {
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension/issues",
@@ -43,6 +43,10 @@
 			{
 				"command": "vanilla-bloc.new-bloc-base",
 				"title": "Vanilla BLoC: New Vanilla BLoC Base"
+			},
+			{
+				"command": "vanilla-bloc.new-bloc-singleton",
+				"title": "Vanilla BLoC: New Vanilla BLoC Singleton"
 			}
 		],
 		"menus": {
@@ -59,6 +63,11 @@
 				},
 				{
 					"command": "vanilla-bloc.new-bloc-base",
+					"group": "blocGroup@1",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "vanilla-bloc.new-bloc-singleton",
 					"group": "blocGroup@1",
 					"when": "explorerResourceIsFolder"
 				}

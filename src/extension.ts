@@ -24,7 +24,8 @@ import * as mkdirp from "mkdirp";
 import { existsSync, lstatSync, writeFile } from "fs";
 import { 
 	getBlocTemplate,
-	getSnapshotTemplate
+	getSnapshotTemplate,
+	getBlocGlobalSingletonTemplate
 } from './templates';
 ///
 // this method is called when your extension is activated
@@ -118,7 +119,35 @@ export function activate(context: ExtensionContext) {
 		try {
 			await generateVanillaBLoCCode( targetDirectory,);
 			window.showInformationMessage(
-			  `Successfully Generated Snapshot`
+			  `Successfully Generated Vanilla BLoC Base`
+			);
+		} catch (error) {
+			window.showErrorMessage(
+			  `Error:
+			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
+			);
+		}
+	});
+	///
+	commands.registerCommand('vanilla-bloc.new-bloc-singleton', async (uri: Uri) => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		//window.showInformationMessage('Hello World from Vanilla BLoC!');
+		console.log("vanilla-bloc.new-bloc-singleton");
+		let targetDirectory;
+		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
+			targetDirectory = await promptForTargetDirectory();
+			if (_.isNil(targetDirectory)) {
+				window.showErrorMessage("Please select a valid directory");
+				return;
+			}
+		} else {
+			targetDirectory = uri.fsPath;
+		}
+		try {
+			await generateVanillaBLoCCode( targetDirectory,);
+			window.showInformationMessage(
+			  `Successfully Generated Singleton Base Bloc`
 			);
 		} catch (error) {
 			window.showErrorMessage(
@@ -231,6 +260,23 @@ function createBlocBaseTemplate( targetDirectory: string, ) {
 	});
 }
 ///
+function createSingletonBaseTemplate( targetDirectory: string, ) {
+	const snakeCaseBlocName = changeCase.snakeCase("bloc_base_singleton.dart");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}`;
+	if (existsSync(targetPath)) {
+	  throw Error(`${snakeCaseBlocName} already exists`);
+	}
+	return new Promise(async (resolve, reject) => {
+	  writeFile(targetPath, getSnapshotTemplate(), "utf8", error => {
+		if (error) {
+		  reject(error);
+		  return;
+		}
+		resolve();
+	  });
+	});
+}
+///
 async function generateSnapShotCode(
 	targetDirectory: string,
   ) {
@@ -257,3 +303,13 @@ async function generateVanillaBLoCCode(
 	]);
 }
 ///
+async function createSingletonBlocCode( targetDirectory: string, ){
+	const blocDirectoryPath = `${targetDirectory}`;
+	if (!existsSync(blocDirectoryPath)) {
+	  await createDirectory(blocDirectoryPath);
+	}
+	///
+	await Promise.all([
+		createSingletonBaseTemplate( targetDirectory,),    
+	]);
+}

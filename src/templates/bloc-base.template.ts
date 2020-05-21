@@ -3,23 +3,18 @@
  *
  * bloc-base.template.ts
  * Created  20/05/2020.
- * Updated  20/05/2020.
+ * Updated  21/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
  *--------------------------------------------------------*/
 ///
-import * as changeCase from "change-case";
 ///
-export function getBlocBaseTemplate(blocName: string,): string {
-    return getDefaultBlocBaseTemplate(blocName);
-  }
-  function getDefaultBlocBaseTemplate(blocName: string) {
-    const pascalCaseBlocName = changeCase.pascalCase(blocName.toLowerCase());
-    const snakeCaseBlocName = changeCase.snakeCase(blocName.toLowerCase());
-    const blocState = `${pascalCaseBlocName}State`;
-    const blocEvent = `${pascalCaseBlocName}Event`;
-    return `
+export function getBlocBaseTemplate(): string {
+    return getDefaultBlocBaseTemplate();
+}
+function getDefaultBlocBaseTemplate() {
+  return `
     import 'package:flutter/material.dart';
 
     typedef BlocBuilder<T> = T Function();
