@@ -26,10 +26,7 @@
 		"state-management"
 	],
 	"activationEvents": [
-		"onCommand:vanilla-bloc.new-bloc",
-		"onCommand:vanilla-bloc.new-snapshot",
-		"onCommand:vanilla-bloc.new-bloc-base",
-		"onCommand:vanilla-bloc.new-bloc-singleton"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
