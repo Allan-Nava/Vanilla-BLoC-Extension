@@ -40,6 +40,10 @@
 			{
 				"command": "vanilla-bloc.new-snapshot",
 				"title": "Vanilla BLoC: New Snapshot"
+			},
+			{
+				"command": "vanilla-bloc.new-bloc-base",
+				"title": "Vanilla BLoC: New Vanilla BLoC Base"
 			}
 		],
 		"menus": {
@@ -51,6 +55,11 @@
 				},
 				{
 					"command": "vanilla-bloc.new-snapshot",
+					"group": "blocGroup@1",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "vanilla-bloc.new-bloc-base",
 					"group": "blocGroup@1",
 					"when": "explorerResourceIsFolder"
 				}

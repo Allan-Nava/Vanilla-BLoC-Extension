@@ -3,7 +3,7 @@
  *
  * extension.ts
  * Created  20/05/2020.
- * Updated  20/05/2020.
+ * Updated  21/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
@@ -24,7 +24,6 @@ import * as mkdirp from "mkdirp";
 import { existsSync, lstatSync, writeFile } from "fs";
 import { 
 	getBlocTemplate,
-	getBlocStateTemplate,
 	getSnapshotTemplate
 } from './templates';
 ///
@@ -59,6 +58,17 @@ export function activate(context: ExtensionContext) {
 		} else {
 			targetDirectory = uri.fsPath;
 		}
+		try {
+			await generateBlocCode( targetDirectory, blocName );
+			window.showInformationMessage(
+			  `Successfully Generated ${blocName}`
+			);
+		} catch (error) {
+			window.showErrorMessage(
+			  `Error:
+			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
+			);
+		}
 	});
 	//
 	///
@@ -89,7 +99,34 @@ export function activate(context: ExtensionContext) {
 			);
 		}
 	});
-	//
+	///
+	commands.registerCommand('vanilla-bloc.new-bloc-base', async (uri: Uri) => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		//window.showInformationMessage('Hello World from Vanilla BLoC!');
+		console.log("vanilla-bloc.new-bloc-base");
+		let targetDirectory;
+		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
+			targetDirectory = await promptForTargetDirectory();
+			if (_.isNil(targetDirectory)) {
+				window.showErrorMessage("Please select a valid directory");
+				return;
+			}
+		} else {
+			targetDirectory = uri.fsPath;
+		}
+		try {
+			await generateVanillaBLoCCode( targetDirectory,);
+			window.showInformationMessage(
+			  `Successfully Generated Snapshot`
+			);
+		} catch (error) {
+			window.showErrorMessage(
+			  `Error:
+			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
+			);
+		}
+	});
 	///
 }
 //
@@ -154,17 +191,15 @@ async function generateBlocCode(
 	if (!existsSync(blocDirectoryPath)) {
 	  await createDirectory(blocDirectoryPath);
 	}
-  
+	///
 	await Promise.all([
-	  //createBlocEventTemplate(blocName, targetDirectory,),
-	  //createBlocStateTemplate(blocName, targetDirectory, ),
 	  createBlocTemplate(blocName, targetDirectory,),    
 	]);
 }
-
+///
 function createSnapTemplate( targetDirectory: string, ) {
 	const snakeCaseBlocName = changeCase.snakeCase("snapshot_helper.dart");
-	const targetPath = `${targetDirectory}`;
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}`;
 	if (existsSync(targetPath)) {
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
@@ -178,17 +213,47 @@ function createSnapTemplate( targetDirectory: string, ) {
 	  });
 	});
 }
+///
+function createBlocBaseTemplate( targetDirectory: string, ) {
+	const snakeCaseBlocName = changeCase.snakeCase("bloc_base.dart");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}`;
+	if (existsSync(targetPath)) {
+	  throw Error(`${snakeCaseBlocName} already exists`);
+	}
+	return new Promise(async (resolve, reject) => {
+	  writeFile(targetPath, getSnapshotTemplate(), "utf8", error => {
+		if (error) {
+		  reject(error);
+		  return;
+		}
+		resolve();
+	  });
+	});
+}
+///
 async function generateSnapShotCode(
 	targetDirectory: string,
   ) {
-	const blocDirectoryPath = `${targetDirectory}/bloc`;
+	const blocDirectoryPath = `${targetDirectory}`;
 	if (!existsSync(blocDirectoryPath)) {
 	  await createDirectory(blocDirectoryPath);
 	}
-  
+	///
 	await Promise.all([
-	  //createBlocEventTemplate(blocName, targetDirectory,),
-	  //createBlocStateTemplate(blocName, targetDirectory, ),
 	  createSnapTemplate( targetDirectory,),    
 	]);
 }
+///
+async function generateVanillaBLoCCode(
+	targetDirectory: string,
+  ) {
+	const blocDirectoryPath = `${targetDirectory}`;
+	if (!existsSync(blocDirectoryPath)) {
+	  await createDirectory(blocDirectoryPath);
+	}
+	///
+	await Promise.all([
+		createBlocBaseTemplate( targetDirectory,),    
+	]);
+}
+///

@@ -1,8 +1,15 @@
-# vanilla-bloc README
+# Vanilla BLoC README
+
 
 ## Features
 
 - Simple creation of Snapshot
+- Simple creation of BLoC Base with BLoCProvider
+
+# Available commands
+
+- Creation of snapshot customized file
+- Creation of BLoC Base ( BLoC Base + BlocProvider )
 
 ## Known Issues
 
