@@ -252,8 +252,8 @@ function createSnapTemplate( targetDirectory: string, ) {
 }
 ///
 function createBlocBaseTemplate( targetDirectory: string, ) {
-	const snakeCaseBlocName = changeCase.snakeCase("bloc_base.dart");
-	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}`;
+	const snakeCaseBlocName = changeCase.snakeCase("bloc_base");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}.dart`;
 	if (existsSync(targetPath)) {
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
@@ -269,8 +269,8 @@ function createBlocBaseTemplate( targetDirectory: string, ) {
 }
 ///
 function createSingletonBaseTemplate( targetDirectory: string, ) {
-	const snakeCaseBlocName = changeCase.snakeCase("bloc_base_singleton.dart");
-	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}`;
+	const snakeCaseBlocName = changeCase.snakeCase("bloc_base_singleton");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}.dart`;
 	if (existsSync(targetPath)) {
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
