@@ -2,7 +2,7 @@
 	"name": "vanilla-bloc",
 	"displayName": "Vanilla BLoC",
 	"description": "Support for the BLoC command allows you to create a Vanilla BLoC and the Events/States",
-	"version": "0.0.13",
+	"version": "0.0.131",
 	"publisher": "Allan-Nava",
 	"bugs": {
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension/issues",
@@ -26,10 +26,7 @@
 		"state-management"
 	],
 	"activationEvents": [
-		"onCommand:vanilla-bloc.new-bloc",
-		"onCommand:vanilla-bloc.new-snapshot",
-		"onCommand:vanilla-bloc.new-bloc-base",
-		"onCommand:vanilla-bloc.new-bloc-singleton"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
