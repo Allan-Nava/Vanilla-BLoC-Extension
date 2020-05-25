@@ -1,5 +1,6 @@
 # Vanilla BLoC README
 
+It is inspired by this article: https://www.didierboelens.com/2018/12/reactive-programming-streams-bloc-practical-use-cases/
 
 ## Features
 
