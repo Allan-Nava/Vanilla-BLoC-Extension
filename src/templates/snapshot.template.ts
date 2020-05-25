@@ -38,6 +38,9 @@ class SnapshotHelper<T> {
       SnapshotBuilder<T> onLoading}) {
     if (snapshot.connectionState == ConnectionState.waiting) {
       return onLoading(snapshot);
+    } else if (snapshot.connectionState == ConnectionState.active &&
+        !snapshot.hasData) {
+      return onLoading(snapshot);
     } else if (snapshot.hasData && !snapshot.hasError) {
       return onData(snapshot);
     } else if (snapshot.hasError) {
