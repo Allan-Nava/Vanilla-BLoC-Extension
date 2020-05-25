@@ -3,7 +3,7 @@
  *
  * extension.ts
  * Created  20/05/2020.
- * Updated  22/05/2020.
+ * Updated  25/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
@@ -235,8 +235,9 @@ async function generateBlocCode(
 }
 ///
 function createSnapTemplate( targetDirectory: string, ) {
-	const snakeCaseBlocName = changeCase.snakeCase("snapshot_helper.dart");
-	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}`;
+	const snakeCaseBlocName = changeCase.snakeCase("snapshot_helper");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}.dart`;
+	console.log(`createSnapTemplate ${targetPath}`);
 	if (existsSync(targetPath)) {
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
