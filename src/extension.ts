@@ -276,7 +276,7 @@ function createSingletonBaseTemplate( targetDirectory: string, ) {
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
 	return new Promise(async (resolve, reject) => {
-	  writeFile(targetPath, getSnapshotTemplate(), "utf8", error => {
+	  writeFile(targetPath, getBlocGlobalSingletonTemplate(), "utf8", error => {
 		if (error) {
 		  reject(error);
 		  return;
