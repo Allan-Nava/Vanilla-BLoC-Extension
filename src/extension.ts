@@ -151,7 +151,7 @@ export function activate(context: ExtensionContext) {
 			targetDirectory = uri.fsPath;
 		}
 		try {
-			await generateVanillaBLoCCode( targetDirectory,);
+			await createSingletonBlocCode( targetDirectory,);
 			window.showInformationMessage(
 			  `Successfully Generated Singleton Base Bloc`
 			);
