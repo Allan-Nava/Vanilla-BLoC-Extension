@@ -74,7 +74,7 @@ export function activate(context: ExtensionContext) {
 	});
 	///
 	/// 
-	context.subscriptions.push(new_bloc);
+	//context.subscriptions.push(new_bloc);
 	///
 	let new_snapshot =commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
@@ -104,7 +104,7 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	/// 
-	context.subscriptions.push(new_snapshot);
+	//context.subscriptions.push(new_snapshot);
 	///
 	let bloc_base = commands.registerCommand('vanilla-bloc.new-bloc-base', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
@@ -134,7 +134,7 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	/// 
-	context.subscriptions.push(bloc_base);
+	//context.subscriptions.push(bloc_base);
 	///
 	let singleton = commands.registerCommand('vanilla-bloc.new-bloc-singleton', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
@@ -164,7 +164,7 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	/// 
-	context.subscriptions.push(singleton);
+	//context.subscriptions.push(singleton);
 	///
 }
 //

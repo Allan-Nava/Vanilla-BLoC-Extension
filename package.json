@@ -2,7 +2,7 @@
 	"name": "vanilla-bloc",
 	"displayName": "Vanilla BLoC Flutter",
 	"description": "Allows you to create a Vanilla BLoC and the Events/States",
-	"version": "0.0.135",
+	"version": "0.0.136",
 	"publisher": "Allan-Nava",
 	"bugs": {
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension/issues",
@@ -27,7 +27,6 @@
 	],
 	"icon": "assets/logo.jpg",
 	"activationEvents": [
-		"*",
 		"onCommand:vanilla-bloc.new-bloc",
 		"onCommand:vanilla-bloc.new-snapshot",
 		"onCommand:vanilla-bloc.new-bloc-base",
