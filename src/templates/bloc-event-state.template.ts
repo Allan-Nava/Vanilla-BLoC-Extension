@@ -60,7 +60,7 @@ abstract class VanilleBlocEventStateBase<VanillaBlocEvent, VanillaBlocState> imp
   //
   // Constructor
   //
-  BlocEventStateBase({
+  VanilleBlocEventStateBase({
     @required this.initialState,
   }){
     //
