@@ -21,18 +21,19 @@ export function getSnapshotTemplate(): string {
 }
 ///
 function getDefaultSnapshotTemplate() {
-    return `
-  /*---------------------------------------------------------
-  * Vanilla BLoC VSCode Extension
-  *
-  * bloc_base.dart
-  * Created  20/05/2020.
-  * Updated  20/05/2020.
-  * Author   Allan Nava.
-  * Created by Allan Nava.
-  * Copyright (C) Allan Nava. All rights reserved.
-  *--------------------------------------------------------*/
-  import 'package:flutter/material.dart';
+  let dateTime = new Date()
+  return `
+/*---------------------------------------------------------
+* Vanilla BLoC VSCode Extension
+*
+* bloc_base.dart
+* Created  ${dateTime}.
+* Updated  ${dateTime}.
+* Author   Allan Nava.
+* Created by Allan Nava.
+* Copyright (C) Allan Nava. All rights reserved.
+*--------------------------------------------------------*/
+import 'package:flutter/material.dart';
 
 typedef SnapshotBuilder<T> = Widget Function(AsyncSnapshot<T>);
 
