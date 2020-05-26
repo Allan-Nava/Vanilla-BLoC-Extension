@@ -25,7 +25,8 @@ import { existsSync, lstatSync, writeFile } from "fs";
 import { 
 	getBlocTemplate,
 	getSnapshotTemplate,
-	getBlocGlobalSingletonTemplate
+	getBlocGlobalSingletonTemplate,
+	getBlocBaseTemplate
 } from './templates';
 ///
 // this method is called when your extension is activated
@@ -259,7 +260,7 @@ function createBlocBaseTemplate( targetDirectory: string, ) {
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
 	return new Promise(async (resolve, reject) => {
-	  writeFile(targetPath, getSnapshotTemplate(), "utf8", error => {
+	  writeFile(targetPath, getBlocBaseTemplate(), "utf8", error => {
 		if (error) {
 		  reject(error);
 		  return;

@@ -21,7 +21,18 @@ export function getSnapshotTemplate(): string {
 }
 ///
 function getDefaultSnapshotTemplate() {
-    return `import 'package:flutter/material.dart';
+    return `
+  /*---------------------------------------------------------
+  * Vanilla BLoC VSCode Extension
+  *
+  * bloc_base.dart
+  * Created  20/05/2020.
+  * Updated  20/05/2020.
+  * Author   Allan Nava.
+  * Created by Allan Nava.
+  * Copyright (C) Allan Nava. All rights reserved.
+  *--------------------------------------------------------*/
+  import 'package:flutter/material.dart';
 
 typedef SnapshotBuilder<T> = Widget Function(AsyncSnapshot<T>);
 

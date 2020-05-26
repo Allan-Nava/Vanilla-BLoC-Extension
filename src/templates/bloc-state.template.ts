@@ -19,10 +19,21 @@ export function getBlocStateTemplate(
 function getDefaultBlocStateTemplate(blocName: string): string {
     const pascalCaseBlocName    = changeCase.pascalCase(blocName.toLowerCase());
     const snakeCaseBlocName     = changeCase.snakeCase(blocName.toLowerCase());
-    return `part of '${snakeCaseBlocName}_bloc.dart';
-  @immutable
-  abstract class ${pascalCaseBlocName}State {}
-  class ${pascalCaseBlocName}Initial extends ${pascalCaseBlocName}State {}
+    return `
+    /*---------------------------------------------------------
+    * Vanilla BLoC VSCode Extension
+    *
+    * bloc_base.dart
+    * Created  20/05/2020.
+    * Updated  20/05/2020.
+    * Author   Allan Nava.
+    * Created by Allan Nava.
+    * Copyright (C) Allan Nava. All rights reserved.
+    *--------------------------------------------------------*/
+    part of '${snakeCaseBlocName}_bloc.dart';
+    @immutable
+    abstract class ${pascalCaseBlocName}State {}
+    class ${pascalCaseBlocName}Initial extends ${pascalCaseBlocName}State {}
   `;
 }
 ///
