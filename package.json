@@ -13,7 +13,7 @@
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension"
 	},
 	"engines": {
-		"vscode": "^1.31.0"
+		"vscode": "^1.45.0"
 	},
 	"categories": [
 		"Snippets",
