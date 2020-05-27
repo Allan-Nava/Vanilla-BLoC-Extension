@@ -45,12 +45,13 @@ export function activate(context: ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		//window.showInformationMessage('Hello World from Vanilla BLoC!');
-		console.log("vanilla-bloc.new-bloc");
+		console.log("vanilla-bloc.new-bloc starts");
 		const blocName = await promptForBlocName();
 		if (_.isNil(blocName) || blocName.trim() === "") {
 			window.showErrorMessage("The bloc name must not be empty");
 			return;
 		}
+		console.log("blocName", blocName);
 		let targetDirectory;
 		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
 			targetDirectory = await promptForTargetDirectory();
@@ -61,12 +62,14 @@ export function activate(context: ExtensionContext) {
 		} else {
 			targetDirectory = uri.fsPath;
 		}
+		console.log(`targetDirectory ${targetDirectory}`);
 		try {
-			await generateBlocCode( targetDirectory, blocName );
+			await generateBlocCode( blocName, targetDirectory );
 			window.showInformationMessage(
 			  `Successfully Generated ${blocName}`
 			);
 		} catch (error) {
+			console.log("error", error);
 			window.showErrorMessage(
 			  `Error:
 			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
@@ -233,19 +236,31 @@ export function activate(context: ExtensionContext) {
 export function deactivate() {}
 //
 function createDirectory(targetDirectory: string): Promise<void> {
+	console.log(`createDirectory ${targetDirectory}`);
 	return new Promise((resolve, reject) => {
-	  mkdirp(targetDirectory, { mode: '0777' }).then(made => {
-		  if(made){
-			  return reject(made);
-		  }
-		  resolve();
-	  });
+		mkdirp(targetDirectory, { mode: '0777' }).then(made => {
+			console.log(`made ${made}`);
+			if(made){
+				return reject(made);
+			}
+			resolve();
+		});
+	});
+  }
+//
+
+function createDirectoryV2(targetDirectory: string): Promise<void> {
+	console.log(`createDirectoryV2 ${targetDirectory}`);
+	return new Promise((resolve, reject) => {
+		mkdirp(targetDirectory, { mode: '0777' })
+		resolve();
 	});
   }
 //
 function createBlocTemplate(blocName: string, targetDirectory: string, ) {
 	const snakeCaseBlocName = changeCase.snakeCase(blocName.toLowerCase());
-	const targetPath = `${targetDirectory}/bloc/${snakeCaseBlocName}_bloc.dart`;
+	const targetPath 		= `${targetDirectory}/bloc/${snakeCaseBlocName}_bloc.dart`;
+	console.log(`targetPath ${targetPath}`);
 	if (existsSync(targetPath)) {
 	  throw Error(`${snakeCaseBlocName}_bloc.dart already exists`);
 	}
@@ -286,9 +301,11 @@ async function generateBlocCode(
 	blocName: string,
 	targetDirectory: string,
   ) {
+	console.log(`generateBlocCode targetDirectory ${targetDirectory}`);
 	const blocDirectoryPath = `${targetDirectory}/bloc`;
+	console.log(`blocDirectoryPath ${blocDirectoryPath}`);
 	if (!existsSync(blocDirectoryPath)) {
-	  await createDirectory(blocDirectoryPath);
+	  await createDirectoryV2(blocDirectoryPath);
 	}
 	///
 	await Promise.all([
@@ -414,7 +431,6 @@ async function createBlocEventStateBuilderCodeTemplate(
 	  });
 	});
 }
-
 ///
 async function createBlocEventStateCode( targetDirectory: string, ){
 	const blocDirectoryPath = `${targetDirectory}`;
