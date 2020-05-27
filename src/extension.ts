@@ -197,7 +197,7 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(bloc_state_builder);
 	///
 	///
-	let bloc_event_state = commands.registerCommand('vanilla-bloc.new-bloc-event-state-builder', async (uri: Uri) => {
+	let bloc_event_state = commands.registerCommand('vanilla-bloc.new-bloc-event-state', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		console.log("vanilla-bloc.new-bloc-event-state");

@@ -2,7 +2,7 @@
 	"name": "vanilla-bloc",
 	"displayName": "Vanilla BLoC Flutter",
 	"description": "Allows you to create a Vanilla BLoC and the Events/States",
-	"version": "0.0.137",
+	"version": "0.0.138",
 	"publisher": "Allan-Nava",
 	"bugs": {
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension/issues",
@@ -13,7 +13,7 @@
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension"
 	},
 	"engines": {
-		"vscode": "^1.45.0"
+		"vscode": "^1.31.0"
 	},
 	"categories": [
 		"Snippets",
@@ -72,44 +72,46 @@
 			"explorer/context": [
 				{
 					"command": "vanilla-bloc.new-bloc",
-					"group": "blocGroup@1",
+					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
 					"command": "vanilla-bloc.new-snapshot",
-					"group": "blocGroup@1",
+					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
 					"command": "vanilla-bloc.new-bloc-base",
-					"group": "blocGroup@1",
+					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
 					"command": "vanilla-bloc.new-bloc-singleton",
-					"group": "blocGroup@1",
+					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
 					"command": "vanilla-bloc.new-bloc-event-state-builder",
-					"group": "blocGroup@1",
+					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
 					"command": "vanilla-bloc.new-bloc-event-state",
-					"group": "blocGroup@1",
+					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				}
 			]
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
 		"compile": "tsc -p ./",
 		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
+		"watch": "node ./node_modules/vscode/bin/install",
 		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
