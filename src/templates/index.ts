@@ -3,7 +3,7 @@
  *
  * index.ts
  * Created  20/05/2020.
- * Updated  20/05/2020.
+ * Updated  27/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
@@ -14,4 +14,5 @@ export * from "./bloc.template";
 export * from './bloc-base.template';
 export * from './snapshot.template';
 export * from './bloc-global-singleton-template';
+export * from './bloc-event-state-builder.template';
 ///

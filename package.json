@@ -2,7 +2,7 @@
 	"name": "vanilla-bloc",
 	"displayName": "Vanilla BLoC Flutter",
 	"description": "Allows you to create a Vanilla BLoC and the Events/States",
-	"version": "0.0.136",
+	"version": "0.0.137",
 	"publisher": "Allan-Nava",
 	"bugs": {
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension/issues",
@@ -30,7 +30,9 @@
 		"onCommand:vanilla-bloc.new-bloc",
 		"onCommand:vanilla-bloc.new-snapshot",
 		"onCommand:vanilla-bloc.new-bloc-base",
-		"onCommand:vanilla-bloc.new-bloc-singleton"
+		"onCommand:vanilla-bloc.new-bloc-singleton",
+		"onCommand:vanilla-bloc.new-bloc-event-state-builder",
+		"onCommand:vanilla-bloc.new-bloc-event-state"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -54,6 +56,16 @@
 				"command": "vanilla-bloc.new-bloc-singleton",
 				"title": "Vanilla BLoC: New Vanilla BLoC Singleton",
 				"icon": "assets/logo.jpg"
+			},
+			{
+				"command": "vanilla-bloc.new-bloc-event-state-builder",
+				"title": "Vanilla BLoC: New Vanilla BLoC Event State Builder",
+				"icon": "assets/logo.jpg"
+			},
+			{
+				"command": "vanilla-bloc.new-bloc-event-state",
+				"title": "Vanilla BLoC: New Vanilla BLoC Event State",
+				"icon": "assets/logo.jpg"
 			}
 		],
 		"menus": {
@@ -75,6 +87,16 @@
 				},
 				{
 					"command": "vanilla-bloc.new-bloc-singleton",
+					"group": "blocGroup@1",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "vanilla-bloc.new-bloc-event-state-builder",
+					"group": "blocGroup@1",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "vanilla-bloc.new-bloc-event-state",
 					"group": "blocGroup@1",
 					"when": "explorerResourceIsFolder"
 				}

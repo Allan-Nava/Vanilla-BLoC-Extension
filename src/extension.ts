@@ -3,7 +3,7 @@
  *
  * extension.ts
  * Created  20/05/2020.
- * Updated  25/05/2020.
+ * Updated  27/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
@@ -28,6 +28,7 @@ import {
 	getBlocGlobalSingletonTemplate,
 	getBlocBaseTemplate
 } from './templates';
+import { getBlocEventStateTemplate } from './templates/bloc-event-state.template';
 ///
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -74,7 +75,7 @@ export function activate(context: ExtensionContext) {
 	});
 	///
 	/// 
-	//context.subscriptions.push(new_bloc);
+	context.subscriptions.push(new_bloc);
 	///
 	let new_snapshot =commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
@@ -104,7 +105,7 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	/// 
-	//context.subscriptions.push(new_snapshot);
+	context.subscriptions.push(new_snapshot);
 	///
 	let bloc_base = commands.registerCommand('vanilla-bloc.new-bloc-base', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
@@ -134,7 +135,7 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	/// 
-	//context.subscriptions.push(bloc_base);
+	context.subscriptions.push(bloc_base);
 	///
 	let singleton = commands.registerCommand('vanilla-bloc.new-bloc-singleton', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
@@ -164,8 +165,68 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	/// 
-	//context.subscriptions.push(singleton);
+	context.subscriptions.push(singleton);
 	///
+	let bloc_state_builder = commands.registerCommand('vanilla-bloc.new-bloc-event-state-builder', async (uri: Uri) => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		console.log("vanilla-bloc.new-bloc-event-state-builder");
+		let targetDirectory;
+		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
+			targetDirectory = await promptForTargetDirectory();
+			if (_.isNil(targetDirectory)) {
+				window.showErrorMessage("Please select a valid directory");
+				return;
+			}
+		} else {
+			targetDirectory = uri.fsPath;
+		}
+		try {
+			await createBlocEventStateBuilderCode( targetDirectory,);
+			window.showInformationMessage(
+			  `Successfully Generated Vanill Bloc Event State Builder`
+			);
+		} catch (error) {
+			window.showErrorMessage(
+			  `Error:
+			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
+			);
+		}
+	});
+	///
+	context.subscriptions.push(bloc_state_builder);
+	///
+	///
+	let bloc_event_state = commands.registerCommand('vanilla-bloc.new-bloc-event-state-builder', async (uri: Uri) => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		console.log("vanilla-bloc.new-bloc-event-state");
+		let targetDirectory;
+		if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
+			targetDirectory = await promptForTargetDirectory();
+			if (_.isNil(targetDirectory)) {
+				window.showErrorMessage("Please select a valid directory");
+				return;
+			}
+		} else {
+			targetDirectory = uri.fsPath;
+		}
+		try {
+			await createBlocEventStateCode( targetDirectory,);
+			window.showInformationMessage(
+			  `Successfully Generated Vanill Bloc Event State`
+			);
+		} catch (error) {
+			window.showErrorMessage(
+			  `Error:
+			  ${error instanceof Error ? error.message : JSON.stringify(error)}`
+			);
+		}
+	});
+	///
+	context.subscriptions.push(bloc_event_state);
+	///
+	console.log("subscriptions:  ", context.subscriptions.toString(), "length: ", context.subscriptions.length);
 }
 //
 // this method is called when your extension is deactivated
@@ -322,4 +383,65 @@ async function createSingletonBlocCode( targetDirectory: string, ){
 	await Promise.all([
 		createSingletonBaseTemplate( targetDirectory,),    
 	]);
+}
+///
+async function createBlocEventStateBuilderCode( targetDirectory: string, ){
+	const blocDirectoryPath = `${targetDirectory}`;
+	if (!existsSync(blocDirectoryPath)) {
+	  await createDirectory(blocDirectoryPath);
+	}
+	///
+	await Promise.all([
+		createBlocEventStateBuilderCodeTemplate( targetDirectory,),    
+	]);
+}
+///
+async function createBlocEventStateBuilderCodeTemplate(
+	targetDirectory: string,
+  ) {
+	const snakeCaseBlocName = changeCase.snakeCase("vanilla_bloc_event_state_builder");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}.dart`;
+	if (existsSync(targetPath)) {
+	  throw Error(`${snakeCaseBlocName} already exists`);
+	}
+	return new Promise(async (resolve, reject) => {
+	  writeFile(targetPath, getBlocEventStateTemplate(), "utf8", error => {
+		if (error) {
+		  reject(error);
+		  return;
+		}
+		resolve();
+	  });
+	});
+}
+
+///
+async function createBlocEventStateCode( targetDirectory: string, ){
+	const blocDirectoryPath = `${targetDirectory}`;
+	if (!existsSync(blocDirectoryPath)) {
+	  await createDirectory(blocDirectoryPath);
+	}
+	///
+	await Promise.all([
+		createBlocEventStateCodeTemplate( targetDirectory,),    
+	]);
+}
+///
+async function createBlocEventStateCodeTemplate(
+	targetDirectory: string,
+  ) {
+	const snakeCaseBlocName = changeCase.snakeCase("vanilla_bloc_event_state");
+	const targetPath 		= `${targetDirectory}/${snakeCaseBlocName}.dart`;
+	if (existsSync(targetPath)) {
+	  throw Error(`${snakeCaseBlocName} already exists`);
+	}
+	return new Promise(async (resolve, reject) => {
+	  writeFile(targetPath, getBlocEventStateTemplate(), "utf8", error => {
+		if (error) {
+		  reject(error);
+		  return;
+		}
+		resolve();
+	  });
+	});
 }

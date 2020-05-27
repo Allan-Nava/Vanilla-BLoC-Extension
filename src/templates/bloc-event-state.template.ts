@@ -3,7 +3,7 @@
  *
  * bloc-event-state.template.ts
  * Created  20/05/2020.
- * Updated  21/05/2020.
+ * Updated  27/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
