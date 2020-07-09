@@ -11,6 +11,7 @@ It is inspired by this article: https://www.didierboelens.com/2018/12/reactive-p
 # Available commands
 
 - Creation of snapshot customized file
+- Simple creation of Snapshot
 - Creation of Vanilla BLoC Base ( BLoC Base + BlocProvider )
 - Creation of Singleton Vanilla BLoC Base
 

@@ -3,7 +3,7 @@
  *
  * snapshot.template.ts
  * Created  20/05/2020.
- * Updated  20/05/2020.
+ * Updated  09/07/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
