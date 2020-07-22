@@ -1,4 +1,5 @@
 # Vanilla BLoC README
+[![Discord Chat](https://img.shields.io/badge/Discord-Chat-important)](https://discord.gg/nMTKrRZ)
 
 It is inspired by this article: https://www.didierboelens.com/2018/12/reactive-programming-streams-bloc-practical-use-cases/
 
