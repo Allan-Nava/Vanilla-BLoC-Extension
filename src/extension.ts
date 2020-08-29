@@ -3,7 +3,7 @@
  *
  * extension.ts
  * Created  20/05/2020.
- * Updated  27/05/2020.
+ * Updated  29/08/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
@@ -77,7 +77,6 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 	///
-	/// 
 	context.subscriptions.push(new_bloc);
 	///
 	let new_snapshot =commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
