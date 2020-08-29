@@ -3,7 +3,7 @@
  *
  * snapshot.template.ts
  * Created  20/05/2020.
- * Updated  20/05/2020.
+ * Updated  09/07/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
@@ -48,18 +48,17 @@ class SnapshotHelper<T> {
       {SnapshotBuilder<T> onData,
       SnapshotBuilder<T> onError,
       SnapshotBuilder<T> onLoading}) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
+    if (snapshot.hasError) {
+      return onError(snapshot);
+    } else if (snapshot.connectionState == ConnectionState.waiting) {
       return onLoading(snapshot);
     } else if (snapshot.connectionState == ConnectionState.active &&
         !snapshot.hasData) {
       return onLoading(snapshot);
     } else if (snapshot.hasData && !snapshot.hasError) {
       return onData(snapshot);
-    } else if (snapshot.hasError) {
-      return onError(snapshot);
     }
     return null;
-  }
 }
 
 //usage:

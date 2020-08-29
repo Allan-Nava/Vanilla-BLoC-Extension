@@ -1,5 +1,14 @@
-# Vanilla BLoC README
-[![Discord Chat](https://img.shields.io/badge/Discord-Chat-important)](https://discord.gg/nMTKrRZ)
+---
+layout: default
+title: Home
+nav_order: 1
+description: "Vanilla BLoC Docs"
+permalink: /
+last_modified_date: 2020-07-15T17:54:08+0000
+---
+
+
+# Vanilla BLoC Documentation
 
 It is inspired by this article: https://www.didierboelens.com/2018/12/reactive-programming-streams-bloc-practical-use-cases/
 
