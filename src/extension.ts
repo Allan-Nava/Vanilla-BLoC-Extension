@@ -3,11 +3,7 @@
  *
  * extension.ts
  * Created  20/05/2020.
-<<<<<<< HEAD
  * Updated  29/08/2020.
-=======
- * Updated  25/06/2020.
->>>>>>> 595719686e3e16d55e52b7483ee5123cfea0e843
  * Author   Allan Nava.
  * Created by Allan Nava.
  * Copyright (C) Allan Nava. All rights reserved.
