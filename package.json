@@ -132,7 +132,7 @@
 	"dependencies": {
 		"@types/change-case": "^2.3.1",
 		"vsce": "^2.15.0",
-		"webpack": "^5.75.0",
+		"webpack": "^5.76.0",
 		"webpack-cli": "^5.0.1"
 	}
 }
