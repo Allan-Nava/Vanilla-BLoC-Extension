@@ -19,7 +19,7 @@ function getDefaultBlocTemplate(blocName: string) {
   const snakeCaseBlocName = changeCase.snakeCase(blocName.toLowerCase());
   const blocState = `${pascalCaseBlocName}State`;
   const blocEvent = `${pascalCaseBlocName}Event`;
-  let dateTime = new Date()
+  const dateTime = new Date()
   return `
 /*---------------------------------------------------------
 * Vanilla BLoC VSCode Extension

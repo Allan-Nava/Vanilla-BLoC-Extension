@@ -14,7 +14,9 @@ Estensione VSCode (`github.com/Allan-Nava/Vanilla-BLoC-Extension`, marketplace p
 ## Regole di lavoro (SEMPRE)
 
 - **MAI `git push`** — lo fa sempre l'utente. **MAI `Co-Authored-By`** nei commit.
-- **Ogni release bump** = nuova voce in `CHANGELOG.md` (Keep a Changelog) **+** bump di `version` in `package.json`. Oggi il CHANGELOG è fermo a 0.0.13 mentre la versione è 0.0.16: riallinearlo. Bump `minor` per nuovi comandi/template, `patch` per fix.
+- **Release automatizzata** con `scripts/new-release.sh <patch|minor|major|X.Y.Z>`: bumpa `version` in `package.json`, promuove `[Unreleased]` del `CHANGELOG.md` a versione datata, builda, fa commit `release: vX.Y.Z` + tag annotato. **Non fa push.** Bump `minor` per nuovi comandi/template, `patch` per fix. Al push del tag `v*` il workflow `.github/workflows/release.yml` crea la GitHub Release e (se c'è il secret `VSCE_PAT`) pubblica sul Marketplace.
+- **Ogni modifica va annotata in `CHANGELOG.md` sotto `[Unreleased]`** (Keep a Changelog): è quella sezione che lo script promuove a release.
+- **Todo → `docs/backlog.md`** (sorgente unica, item con `id` stabile `VB-N`, milestone in `docs/roadmap.md`). Non sparpagliare TODO. Item hardening/cleanup restano nel backlog, non proporli come "next".
 - **Il pubblicabile lo decide `.vscodeignore`** — `src/`, `**/*.ts`, `**/*.map`, `out/test/**`, `.vscode/**` sono esclusi dal `.vsix`. Verificare cosa finisce nel pacchetto con `vsce ls` prima di pubblicare.
 - **Allineare tutto**: un comando nuovo tocca almeno 4 punti — `package.json` (`contributes.commands` + `menus` + `activationEvents`), `src/extension.ts` (`registerCommand` + `context.subscriptions.push`), un template in `src/templates/`, il barrel `index.ts`, e README/CHANGELOG. Se cambi un punto, propaga agli altri.
 - **`command` deve combaciare esattamente** tra `package.json` e `registerCommand(...)` — un mismatch = comando che non parte.
@@ -46,6 +48,7 @@ Debug interattivo: F5 in VSCode → config **"Run Extension"** (apre Extension D
 
 ## Puntatori
 
+- Backlog operativo: `docs/backlog.md` · Roadmap per milestone: `docs/roadmap.md` · Release helper: `scripts/new-release.sh` · Workflow release: `.github/workflows/release.yml`
 - Repo: `github.com/Allan-Nava/Vanilla-BLoC-Extension` · Issue/bug: `bugs.url` nel manifest · Docs site: `docs/` (GitHub Pages/Jekyll)
 - Ispirazione pattern BLoC: articolo Didier Boelens (link nel README)
 - Owner unico: `@Allan-Nava` (`.github/CODEOWNERS`)

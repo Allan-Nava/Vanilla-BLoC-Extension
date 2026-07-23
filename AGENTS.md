@@ -7,7 +7,8 @@ Questo file definisce le regole operative per gli agent AI (Copilot, Claude, alt
 ## Regole di lavoro (SEMPRE)
 
 - **MAI `git push`**: lo fa sempre l'utente. **MAI `Co-Authored-By`** nei commit.
-- **Bump versione = `package.json` + `CHANGELOG.md` insieme** (Keep a Changelog). Oggi disallineati (manifest 0.0.16, CHANGELOG fermo a 0.0.13): riallineare. `minor` per nuovi comandi/template, `patch` per fix.
+- **Release = `scripts/new-release.sh <patch|minor|major|X.Y.Z>`**: bumpa `package.json`, promuove `[Unreleased]` del `CHANGELOG.md` a versione datata, builda, commit `release: vX.Y.Z` + tag. Non fa push. Annotare ogni modifica sotto `[Unreleased]`. Al push del tag `v*`, `.github/workflows/release.yml` fa release + publish Marketplace (secret `VSCE_PAT`).
+- **Todo → `docs/backlog.md`** (`id` stabile `VB-N`, milestone in `docs/roadmap.md`). Non sparpagliare TODO; gli item hardening restano lì, non proporli come "next".
 - **Un comando nuovo tocca 4+ punti** e vanno propagati tutti: `package.json` (`contributes.commands` + `menus.explorer/context` + `activationEvents`), `src/extension.ts` (`registerCommand` + `context.subscriptions.push`), template in `src/templates/` + barrel `index.ts`, README/CHANGELOG.
 - **Il `command` deve combaciare esattamente** tra `package.json` e `registerCommand(...)`.
 - **`.vscodeignore` decide il pacchetto**: `src/`, `*.ts`, `*.map`, `out/test/**` sono esclusi. Verificare con `vsce ls` prima di pubblicare.
@@ -39,5 +40,6 @@ Debug: F5 → **"Run Extension"** (Extension Development Host).
 
 ## Puntatori
 
+- Backlog: `docs/backlog.md` · Roadmap: `docs/roadmap.md` · Release: `scripts/new-release.sh` + `.github/workflows/release.yml`
 - Repo/issue: `github.com/Allan-Nava/Vanilla-BLoC-Extension` · Owner: `@Allan-Nava` (`.github/CODEOWNERS`) · Docs: `docs/` (GitHub Pages)
 - Contesto tecnico esteso: `CLAUDE.md`

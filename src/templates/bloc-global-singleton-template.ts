@@ -14,7 +14,7 @@ export function getBlocGlobalSingletonTemplate(): string {
     return getBlocSingletonBaseTemplate();
 }
 function getBlocSingletonBaseTemplate() {
-let dateTime = new Date()
+const dateTime = new Date()
   return `
 /*---------------------------------------------------------
 * Vanilla BLoC VSCode Extension

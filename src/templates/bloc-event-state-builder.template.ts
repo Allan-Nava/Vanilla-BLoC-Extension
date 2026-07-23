@@ -9,17 +9,17 @@
  * Copyright (C) Allan Nava. All rights reserved.
  *--------------------------------------------------------*/
 ///
-export function getBlocEventStateTemplate(): string {
-    return getDefaultBlocEventStateTemplate();
+export function getBlocEventStateBuilderTemplate(): string {
+    return getDefaultBlocEventStateBuilderTemplate();
 }
-function getDefaultBlocEventStateTemplate() {
-  let dateTime = new Date();
+function getDefaultBlocEventStateBuilderTemplate() {
+  const dateTime = new Date();
 ///
 return `
 /*---------------------------------------------------------
 * Vanilla BLoC VSCode Extension
 *
-* bloc-event-state.dart
+* bloc-event-state-builder.dart
 * Created  ${dateTime}.
 * Updated  ${dateTime}.
 * Author   Allan Nava.

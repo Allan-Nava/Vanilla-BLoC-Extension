@@ -1,0 +1,46 @@
+name: Release
+
+# Si attiva al push di un tag vX.Y.Z (creato da scripts/new-release.sh).
+# Builda, impacchetta il .vsix, crea la GitHub Release e — se il secret
+# VSCE_PAT è configurato — pubblica sul VS Code Marketplace.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint & compile
+        run: |
+          npm run lint
+          npm run compile
+
+      - name: Package VSIX
+        run: npx vsce package --out "vanilla-bloc-${GITHUB_REF_NAME}.vsix"
+
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "vanilla-bloc-${{ github.ref_name }}.vsix"
+          generate_release_notes: true
+
+      - name: Publish to VS Code Marketplace
+        if: ${{ secrets.VSCE_PAT != '' }}
+        run: npx vsce publish --pat "$VSCE_PAT"
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

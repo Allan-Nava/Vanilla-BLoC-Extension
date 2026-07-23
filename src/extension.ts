@@ -29,6 +29,7 @@ import {
 	getBlocBaseTemplate
 } from './templates';
 import { getBlocEventStateTemplate } from './templates/bloc-event-state.template';
+import { getBlocEventStateBuilderTemplate } from './templates/bloc-event-state-builder.template';
 ///
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -41,7 +42,7 @@ export function activate(context: ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let new_bloc = commands.registerCommand('vanilla-bloc.new-bloc', async (uri: Uri) => {
+	const new_bloc = commands.registerCommand('vanilla-bloc.new-bloc', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		//window.showInformationMessage('Hello World from Vanilla BLoC!');
@@ -79,7 +80,7 @@ export function activate(context: ExtensionContext) {
 	///
 	context.subscriptions.push(new_bloc);
 	///
-	let new_snapshot =commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
+	const new_snapshot =commands.registerCommand('vanilla-bloc.new-snapshot', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		//window.showInformationMessage('Hello World from Vanilla BLoC - Snapshot!');
@@ -109,7 +110,7 @@ export function activate(context: ExtensionContext) {
 	/// 
 	context.subscriptions.push(new_snapshot);
 	///
-	let bloc_base = commands.registerCommand('vanilla-bloc.new-bloc-base', async (uri: Uri) => {
+	const bloc_base = commands.registerCommand('vanilla-bloc.new-bloc-base', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		//window.showInformationMessage('Hello World from Vanilla BLoC!');
@@ -139,7 +140,7 @@ export function activate(context: ExtensionContext) {
 	/// 
 	context.subscriptions.push(bloc_base);
 	///
-	let singleton = commands.registerCommand('vanilla-bloc.new-bloc-singleton', async (uri: Uri) => {
+	const singleton = commands.registerCommand('vanilla-bloc.new-bloc-singleton', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		//window.showInformationMessage('Hello World from Vanilla BLoC!');
@@ -169,7 +170,7 @@ export function activate(context: ExtensionContext) {
 	/// 
 	context.subscriptions.push(singleton);
 	///
-	let bloc_state_builder = commands.registerCommand('vanilla-bloc.new-bloc-event-state-builder', async (uri: Uri) => {
+	const bloc_state_builder = commands.registerCommand('vanilla-bloc.new-bloc-event-state-builder', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		console.log("vanilla-bloc.new-bloc-event-state-builder");
@@ -199,7 +200,7 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(bloc_state_builder);
 	///
 	///
-	let bloc_event_state = commands.registerCommand('vanilla-bloc.new-bloc-event-state', async (uri: Uri) => {
+	const bloc_event_state = commands.registerCommand('vanilla-bloc.new-bloc-event-state', async (uri: Uri) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		console.log("vanilla-bloc.new-bloc-event-state");
@@ -234,26 +235,11 @@ export function activate(context: ExtensionContext) {
 // this method is called when your extension is deactivated
 export function deactivate() {}
 //
-function createDirectory(targetDirectory: string): Promise<void> {
+async function createDirectory(targetDirectory: string): Promise<void> {
 	console.log(`createDirectory ${targetDirectory}`);
-	return new Promise((resolve, reject) => {
-		mkdirp(targetDirectory, { mode: '0777' }).then(made => {
-			console.log(`made ${made}`);
-			if(made){
-				return reject(made);
-			}
-			resolve();
-		});
-	});
-  }
-//
-
-function createDirectoryV2(targetDirectory: string): Promise<void> {
-	console.log(`createDirectoryV2 ${targetDirectory}`);
-	return new Promise((resolve, reject) => {
-		mkdirp(targetDirectory, { mode: '0777' })
-		resolve();
-	});
+	// mkdirp resolves with the first directory created (or undefined if it
+	// already existed). Both outcomes are success — only a rejection is an error.
+	await mkdirp(targetDirectory, { mode: 0o777 });
   }
 //
 function createBlocTemplate(blocName: string, targetDirectory: string, ) {
@@ -304,7 +290,7 @@ async function generateBlocCode(
 	const blocDirectoryPath = `${targetDirectory}/bloc`;
 	console.log(`blocDirectoryPath ${blocDirectoryPath}`);
 	if (!existsSync(blocDirectoryPath)) {
-	  await createDirectoryV2(blocDirectoryPath);
+	  await createDirectory(blocDirectoryPath);
 	}
 	///
 	await Promise.all([
@@ -421,7 +407,7 @@ async function createBlocEventStateBuilderCodeTemplate(
 	  throw Error(`${snakeCaseBlocName} already exists`);
 	}
 	return new Promise(async (resolve, reject) => {
-	  writeFile(targetPath, getBlocEventStateTemplate(), "utf8", error => {
+	  writeFile(targetPath, getBlocEventStateBuilderTemplate(), "utf8", error => {
 		if (error) {
 		  reject(error);
 		  return;

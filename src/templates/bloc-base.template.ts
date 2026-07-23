@@ -14,7 +14,7 @@ export function getBlocBaseTemplate(): string {
     return getDefaultBlocBaseTemplate();
 }
 function getDefaultBlocBaseTemplate() {
-  let dateTime = new Date();
+  const dateTime = new Date();
   return `
 /*---------------------------------------------------------
 * Vanilla BLoC VSCode Extension

@@ -13,7 +13,7 @@ export function getBlocEventStateTemplate(): string {
     return getDefaultBlocEventStateTemplate();
 }
 function getDefaultBlocEventStateTemplate() {
-  let dateTime = new Date();
+  const dateTime = new Date();
 ///
 return `
 /*---------------------------------------------------------
@@ -28,9 +28,10 @@ return `
 *--------------------------------------------------------*/
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
+import 'bloc_base.dart';
 
 abstract class VanillaBlocEvent extends Object {}
-abstract class VanilleBlocState extends Object {}
+abstract class VanillaBlocState extends Object {}
 
 abstract class VanillaBlocEventStateBase<VanillaBlocEvent, VanillaBlocState> implements VanillaBlocBase {
   PublishSubject<VanillaBlocEvent> _eventController = PublishSubject<VanillaBlocEvent>();

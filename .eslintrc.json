@@ -1,0 +1,31 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2019,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"env": {
+		"node": true,
+		"es6": true,
+		"mocha": true
+	},
+	"rules": {
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/no-empty-function": "off",
+		"@typescript-eslint/no-unused-vars": "warn",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/camelcase": "off",
+		"no-async-promise-executor": "warn",
+		"no-mixed-spaces-and-tabs": "off",
+		"no-console": "off"
+	}
+}
