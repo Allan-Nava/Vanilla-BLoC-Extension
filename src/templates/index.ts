@@ -6,7 +6,7 @@
  * Updated  27/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
- * Copyright (C) Allan Nava. All rights reserved.
+ * Copyright (c) 2020-2026 Allan Nava. Licensed under the MIT License.
  *--------------------------------------------------------*/
 export * from "./bloc-event.template";
 export * from "./bloc-state.template";

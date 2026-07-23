@@ -8,6 +8,32 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+### Added
+- Suite di test reali sulla generazione file (`src/test/suite/generators.test.ts`):
+  copre nomi/percorsi dei file, contenuto atteso, la regressione VB-1
+  (Event State ≠ Event State Builder) e l'errore su file già esistente.
+- `LICENSE` (MIT) + campo `"license": "MIT"` nel manifest; header sorgente e
+  Dart generato allineati alla MIT (via `bloc_base.dart` ecc.).
+
+### Changed
+- Refactor: la logica di generazione è stata estratta in `src/generators.ts`
+  (senza dipendenza da `vscode`, quindi testabile headless); `extension.ts`
+  resta solo command/UI layer, con la boilerplate dei comandi deduplicata.
+- Scrittura file via `fs.promises.writeFile` + `await` (rimosso l'anti-pattern
+  `new Promise(async …)`); percorsi costruiti con `path.join` invece di `${dir}/…`.
+
+### Removed
+- `console.log` di debug sparsi in `extension.ts`.
+- Import inutilizzato `change-case` in `snapshot.template.ts`.
+
+### Fixed
+- Rinominato `.vscode/estension.json` → `.vscode/extensions.json` (typo: la
+  raccomandazione ESLint ora viene raccolta da VS Code).
+- `SECURITY.md` riscritto (era il template GitHub con versioni "5.1.x").
+- `.vscodeignore` esteso: il `.vsix` non imbarca più file interni/dev
+  (`.claude/`, `docs/`, `.github/`, `scripts/`, `CLAUDE.md`, `AGENTS.md`,
+  output tsc ridondante). Verificato con `vsce ls`.
+
 ## [0.1.0] - 2026-07-23
 
 ### Fixed

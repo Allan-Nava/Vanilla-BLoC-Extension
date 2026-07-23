@@ -6,7 +6,7 @@
  * Updated  20/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
- * Copyright (C) Allan Nava. All rights reserved.
+ * Copyright (c) 2020-2026 Allan Nava. Licensed under the MIT License.
  *--------------------------------------------------------*/
 ///
 import * as changeCase from "change-case";
@@ -29,7 +29,7 @@ function getDefaultBlocTemplate(blocName: string) {
 * Updated  ${dateTime}.
 * Author   Allan Nava.
 * Created by Allan Nava.
-* Copyright (C) Allan Nava. All rights reserved.
+* Copyright (c) 2020-2026 Allan Nava. Licensed under the MIT License.
 *--------------------------------------------------------*/
 import 'dart:async';
 

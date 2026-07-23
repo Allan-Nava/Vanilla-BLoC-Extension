@@ -7,7 +7,7 @@
  * Updated  21/05/2020.
  * Author   Allan Nava.
  * Created by Allan Nava.
- * Copyright (C) Allan Nava. All rights reserved.
+ * Copyright (c) 2020-2026 Allan Nava. Licensed under the MIT License.
  *--------------------------------------------------------*/
 ///
 export function getBlocGlobalSingletonTemplate(): string {
@@ -24,7 +24,7 @@ const dateTime = new Date()
 * Updated  ${dateTime}.
 * Author   Allan Nava.
 * Created by Allan Nava.
-* Copyright (C) Allan Nava. All rights reserved.
+* Copyright (c) 2020-2026 Allan Nava. Licensed under the MIT License.
 *--------------------------------------------------------*/
 import 'package:rxdart/rxdart.dart';
 

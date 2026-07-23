@@ -4,6 +4,7 @@
 	"description": "Allows you to create a Vanilla BLoC and the Events/States",
 	"version": "0.1.0",
 	"publisher": "Allan-Nava",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/Allan-Nava/Vanilla-BLoC-Extension/issues",
 		"email": "allannava95@gmail.com"

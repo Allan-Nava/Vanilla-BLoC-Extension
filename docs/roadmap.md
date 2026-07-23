@@ -5,8 +5,8 @@ Ogni milestone = una release taggata `vX.Y.Z` (vedi `../CLAUDE.md` §Release).
 
 | Milestone | Tema | Stato | Item |
 |-----------|------|-------|------|
-| **v0.1.0** | Correttezza — i comandi generano il file giusto e compilabile | ✅ pronta per release | VB-1 … VB-7 |
-| **v0.2.0** | Hardening & DX — test reali, cleanup, licenza/security | 🔜 pianificata | VB-8 … VB-14 |
+| **v0.1.0** | Correttezza — i comandi generano il file giusto e compilabile | ✅ rilasciata (tag `v0.1.0`) | VB-1 … VB-7, VB-19 |
+| **v0.2.0** | Hardening & DX — test reali, cleanup, licenza/security | ✅ pronta per release | VB-8 … VB-14 |
 | **v0.3.0** | Modernizzazione toolchain — vuln, TS/eslint, engine VSCode | 🔜 pianificata | VB-15 … VB-18 |
 
 ## Criteri di release

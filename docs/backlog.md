@@ -21,17 +21,18 @@ Legenda priorità: `P0` (bloccante) · `P1` (importante) · `P2` (nice-to-have)
 | VB-7 | P1 | done | Backlog + roadmap + `new-release.sh` + workflow release (questo lavoro). |
 | VB-19 | P0 | done | `npm run lint`/`pretest` erano rotti: mancava la config ESLint. Aggiunto `.eslintrc.json`. |
 
-## Milestone `v0.2.0` — Hardening & DX
+## Milestone `v0.2.0` — Hardening & DX (pronta per release)
 
 | id | prio | stato | item |
 |----|------|-------|------|
-| VB-8  | P1 | todo | Rimuovere/gate i `console.log` di debug in `extension.ts` (usare un output channel o `NODE_ENV`). |
-| VB-9  | P1 | todo | Sostituire l'anti-pattern `new Promise(async …)` con `fs.promises.writeFile` + `await` in tutte le `create*Template`. |
-| VB-10 | P2 | todo | Usare `path.join`/`path.sep` invece della concatenazione `${dir}/…`. |
-| VB-11 | P1 | todo | Aggiungere test reali sulla generazione file (oggi solo un placeholder in `extension.test.ts`). |
-| VB-12 | P2 | todo | Rinominare `.vscode/estension.json` → `extensions.json` (typo: la raccomandazione non viene raccolta). |
-| VB-13 | P1 | todo | Riscrivere `SECURITY.md` (ora è il template GitHub con versioni "5.1.x" senza senso). |
-| VB-14 | P1 | todo | Aggiungere un file `LICENSE` (README dichiara "open source", header dicono "All rights reserved" → chiarire). |
+| VB-8  | P1 | done | Rimossi i `console.log` di debug da `extension.ts` (ora solo command layer). |
+| VB-9  | P1 | done | Anti-pattern `new Promise(async …)` sostituito con `fs.promises.writeFile` + `await` (in `generators.ts`). |
+| VB-10 | P2 | done | Percorsi con `path.join` invece di `${dir}/…`. |
+| VB-11 | P1 | done | Test reali sulla generazione file in `src/test/suite/generators.test.ts` + logica estratta in `generators.ts` (testabile headless). |
+| VB-12 | P2 | done | Rinominato `.vscode/estension.json` → `extensions.json`. |
+| VB-13 | P1 | done | `SECURITY.md` riscritto (versioni reali + processo di reporting). |
+| VB-14 | P1 | done | Aggiunto `LICENSE` (MIT) + `"license": "MIT"` nel manifest; header allineati. |
+| VB-20 | P1 | done | `.vscodeignore` esteso: il `.vsix` non imbarca più file interni/dev (verificato con `vsce ls`). |
 
 ## Milestone `v0.3.0` — Modernizzazione toolchain
 
