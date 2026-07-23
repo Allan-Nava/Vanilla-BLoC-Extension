@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-07-23
+
 ### Fixed
 - Il comando **New Event State Builder** generava per errore il template
   *Event State* (collisione di nome: due file esportavano
