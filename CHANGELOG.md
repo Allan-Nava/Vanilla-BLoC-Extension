@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-23
+
 ### Added
 - Suite di test reali sulla generazione file (`src/test/suite/generators.test.ts`):
   copre nomi/percorsi dei file, contenuto atteso, la regressione VB-1
