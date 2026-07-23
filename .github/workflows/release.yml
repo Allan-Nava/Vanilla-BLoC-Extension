@@ -14,6 +14,11 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    # Mapped at job level so the publish step can gate on it: the `secrets`
+    # context is NOT available inside a step `if:` (doing so makes the whole
+    # workflow file invalid), but the `env` context is.
+    env:
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +45,5 @@ jobs:
           generate_release_notes: true
 
       - name: Publish to VS Code Marketplace
-        if: ${{ secrets.VSCE_PAT != '' }}
+        if: ${{ env.VSCE_PAT != '' }}
         run: npx vsce publish --pat "$VSCE_PAT"
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
