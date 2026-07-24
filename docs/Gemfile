@@ -1,1 +1,9 @@
-gem "just-the-docs"
+source "https://rubygems.org"
+
+# Mirror the gem set GitHub Pages uses for the classic ("deploy from branch")
+# build, so `bundle exec jekyll serve` locally matches production.
+gem "github-pages", group: :jekyll_plugins
+
+# Required for the `remote_theme:` directive in _config.yml (just-the-docs is
+# pulled as a remote theme, not installed as a gem).
+gem "jekyll-remote-theme"

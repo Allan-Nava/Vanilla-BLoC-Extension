@@ -12,6 +12,11 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 - Workflow `release.yml` non valido → falliva allo startup (0s) su ogni push:
   il contesto `secrets` non è usabile in un `if:` di step. Il secret `VSCE_PAT`
   è ora mappato su una `env` a livello job e lo step di publish gata su `env`.
+- Build GitHub Pages rotta (`The just-the-docs theme could not be found`):
+  rimosso `theme: just-the-docs` dal `docs/_config.yml` (la gem non è nel set
+  `github-pages`), tenuto solo `remote_theme: just-the-docs/just-the-docs@v0.3.3`
+  (ultima compatibile con Jekyll 3.10) + plugin `jekyll-remote-theme`. `docs/Gemfile`
+  allineato alla pipeline classica; corretto anche l'HTML rotto in `footer_content`.
 
 ## [0.2.0] - 2026-07-23
 
