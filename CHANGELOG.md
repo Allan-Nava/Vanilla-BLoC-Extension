@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-07-24
+
 ### Changed
 - **`name`: `vanilla-bloc` → `vanilla-bloc-generator`** (il `name` è univoco su
   tutto il Marketplace e `vanilla-bloc` è già occupato dal vecchio listing).
