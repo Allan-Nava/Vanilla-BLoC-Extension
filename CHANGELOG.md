@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-07-24
+
 ### Fixed
 - CI: `npm ci` falliva (`package.json`/`package-lock.json` fuori sync). Lock
   rigenerato pulito e verificato con `npm ci` in locale.
