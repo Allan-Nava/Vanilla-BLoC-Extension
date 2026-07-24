@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-07-24
+
 ### Changed
 - **`displayName`: "Vanilla BLoC Flutter" → "Vanilla BLoC Scaffolding (Flutter)"**
   (anche il displayName è univoco su tutto il Marketplace e il precedente era
