@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-07-24
+
 ### Fixed
 - Pacchetto `.vsix` gonfio: con le `dependencies` runtime, `vsce` includeva
   ~1180 file da `node_modules` (813 KB). Aggiunto `node_modules/**` a
