@@ -8,6 +8,13 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+### Changed
+- **Publisher Marketplace: `Allan-Nava` → `allannava95`** (l'account che possiede
+  il vecchio publisher non è più accessibile). L'extension id diventa
+  `allannava95.vanilla-bloc`: è un **nuovo listing**, installazioni/recensioni del
+  vecchio non si trasferiscono. Prerequisiti publish: publisher `allannava95`
+  creato su marketplace.visualstudio.com/manage + `VSCE_PAT` di quell'account.
+
 ## [0.2.2] - 2026-07-24
 
 ### Fixed
