@@ -8,6 +8,8 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-07-24
+
 ### Fixed
 - Workflow `release.yml` non valido → falliva allo startup (0s) su ogni push:
   il contesto `secrets` non è usabile in un `if:` di step. Il secret `VSCE_PAT`
