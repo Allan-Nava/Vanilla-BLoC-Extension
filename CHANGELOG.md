@@ -8,6 +8,20 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+### Fixed
+- CI: `npm ci` falliva (`package.json`/`package-lock.json` fuori sync). Lock
+  rigenerato pulito e verificato con `npm ci` in locale.
+
+### Changed
+- Toolchain aggiornata (necessaria per un lock rigenerabile: TS 3.9 non
+  compilava più i `@types/*` moderni): **TypeScript 3.8 → 5.4**, **ts-loader
+  7 → 9**, **`@types/node` 13 → 20**. `@types/vscode` pinnato a `~1.45.0` (=
+  minimo `engines.vscode`, evita di usare per errore API più recenti).
+- CI: workflow `release.yml` su **Node 20** (era 18, EOL).
+
+_Nota: bump solo di toolchain/build — nessuna modifica al comportamento
+utente né al bundle pubblicato._
+
 ## [0.2.1] - 2026-07-24
 
 ### Fixed
