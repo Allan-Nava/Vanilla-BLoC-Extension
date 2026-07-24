@@ -1,5 +1,8 @@
 .vscode/**
 .vscode-test/**
+# L'estensione è bundlata da webpack in out/extension.js: le dependencies sono
+# già inlinate, quindi node_modules non serve nel .vsix (guida "Bundling Extensions").
+node_modules/**
 .claude/**
 .github/**
 docs/**

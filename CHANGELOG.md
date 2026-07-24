@@ -8,6 +8,12 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+### Fixed
+- Pacchetto `.vsix` gonfio: con le `dependencies` runtime, `vsce` includeva
+  ~1180 file da `node_modules` (813 KB). Aggiunto `node_modules/**` a
+  `.vscodeignore` — l'estensione è bundlata da webpack in `out/extension.js`,
+  quindi non serve. `.vsix` tornato a ~11 file / 70 KB (verificato con `vsce ls`).
+
 ### Changed
 - **Publisher Marketplace: `Allan-Nava` → `allannava95`** (l'account che possiede
   il vecchio publisher non è più accessibile). L'extension id diventa
