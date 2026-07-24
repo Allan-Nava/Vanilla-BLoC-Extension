@@ -1,6 +1,6 @@
 # AGENTS.md — Vanilla-BLoC-Extension
 
-Estensione VSCode (`github.com/Allan-Nava/Vanilla-BLoC-Extension`, publisher `Allan-Nava`, id `vanilla-bloc`) che genera scaffolding Dart/Flutter per il pattern **Vanilla BLoC**. TypeScript + webpack (target `node`).
+Estensione VSCode (repo `github.com/Allan-Nava/Vanilla-BLoC-Extension`, publisher Marketplace `allannava95`, id `allannava95.vanilla-bloc-generator`) che genera scaffolding Dart/Flutter per il pattern **Vanilla BLoC**. TypeScript + webpack (target `node`). Command id: `vanilla-bloc-generator.new-*`.
 
 Questo file definisce le regole operative per gli agent AI (Copilot, Claude, altri tool) in questo repository. Per il contesto tecnico completo vedi `CLAUDE.md`.
 

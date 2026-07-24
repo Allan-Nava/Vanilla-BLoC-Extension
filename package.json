@@ -1,5 +1,5 @@
 {
-	"name": "vanilla-bloc",
+	"name": "vanilla-bloc-generator",
 	"displayName": "Vanilla BLoC Flutter",
 	"description": "Allows you to create a Vanilla BLoC and the Events/States",
 	"version": "0.2.3",
@@ -28,43 +28,43 @@
 	],
 	"icon": "assets/logo.jpg",
 	"activationEvents": [
-		"onCommand:vanilla-bloc.new-bloc",
-		"onCommand:vanilla-bloc.new-snapshot",
-		"onCommand:vanilla-bloc.new-bloc-base",
-		"onCommand:vanilla-bloc.new-bloc-singleton",
-		"onCommand:vanilla-bloc.new-bloc-event-state-builder",
-		"onCommand:vanilla-bloc.new-bloc-event-state"
+		"onCommand:vanilla-bloc-generator.new-bloc",
+		"onCommand:vanilla-bloc-generator.new-snapshot",
+		"onCommand:vanilla-bloc-generator.new-bloc-base",
+		"onCommand:vanilla-bloc-generator.new-bloc-singleton",
+		"onCommand:vanilla-bloc-generator.new-bloc-event-state-builder",
+		"onCommand:vanilla-bloc-generator.new-bloc-event-state"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "vanilla-bloc.new-bloc",
+				"command": "vanilla-bloc-generator.new-bloc",
 				"title": "Vanilla BLoC: New Bloc",
 				"icon": "assets/logo.jpg"
 			},
 			{
-				"command": "vanilla-bloc.new-snapshot",
+				"command": "vanilla-bloc-generator.new-snapshot",
 				"title": "Vanilla BLoC: New Snapshot",
 				"icon": "assets/logo.jpg"
 			},
 			{
-				"command": "vanilla-bloc.new-bloc-base",
+				"command": "vanilla-bloc-generator.new-bloc-base",
 				"title": "Vanilla BLoC: New Vanilla BLoC Base",
 				"icon": "assets/logo.jpg"
 			},
 			{
-				"command": "vanilla-bloc.new-bloc-singleton",
+				"command": "vanilla-bloc-generator.new-bloc-singleton",
 				"title": "Vanilla BLoC: New Vanilla BLoC Singleton",
 				"icon": "assets/logo.jpg"
 			},
 			{
-				"command": "vanilla-bloc.new-bloc-event-state-builder",
+				"command": "vanilla-bloc-generator.new-bloc-event-state-builder",
 				"title": "Vanilla BLoC: New Vanilla BLoC Event State Builder",
 				"icon": "assets/logo.jpg"
 			},
 			{
-				"command": "vanilla-bloc.new-bloc-event-state",
+				"command": "vanilla-bloc-generator.new-bloc-event-state",
 				"title": "Vanilla BLoC: New Vanilla BLoC Event State",
 				"icon": "assets/logo.jpg"
 			}
@@ -72,32 +72,32 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "vanilla-bloc.new-bloc",
+					"command": "vanilla-bloc-generator.new-bloc",
 					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
-					"command": "vanilla-bloc.new-snapshot",
+					"command": "vanilla-bloc-generator.new-snapshot",
 					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
-					"command": "vanilla-bloc.new-bloc-base",
+					"command": "vanilla-bloc-generator.new-bloc-base",
 					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
-					"command": "vanilla-bloc.new-bloc-singleton",
+					"command": "vanilla-bloc-generator.new-bloc-singleton",
 					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
-					"command": "vanilla-bloc.new-bloc-event-state-builder",
+					"command": "vanilla-bloc-generator.new-bloc-event-state-builder",
 					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				},
 				{
-					"command": "vanilla-bloc.new-bloc-event-state",
+					"command": "vanilla-bloc-generator.new-bloc-event-state",
 					"group": "blocGroup@vanilla",
 					"when": "explorerResourceIsFolder"
 				}

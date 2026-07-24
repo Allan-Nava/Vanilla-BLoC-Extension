@@ -1,10 +1,10 @@
 # CLAUDE.md — Vanilla-BLoC-Extension
 
-Estensione VSCode (`github.com/Allan-Nava/Vanilla-BLoC-Extension`, marketplace publisher `Allan-Nava`, id `vanilla-bloc`) che genera scaffolding Dart/Flutter per il pattern **Vanilla BLoC** (Snapshot, BLoC Base + `BlocProvider`, Singleton, Event/State, Event/State Builder). Scritta in **TypeScript**, bundlata con **webpack**, target `node`.
+Estensione VSCode (repo `github.com/Allan-Nava/Vanilla-BLoC-Extension`, marketplace publisher `allannava95`, id `allannava95.vanilla-bloc-generator`) che genera scaffolding Dart/Flutter per il pattern **Vanilla BLoC** (Snapshot, BLoC Base + `BlocProvider`, Singleton, Event/State, Event/State Builder). Scritta in **TypeScript**, bundlata con **webpack**, target `node`. _Nota: pubblicata originariamente come `Allan-Nava.vanilla-bloc`; migrata a nuovo publisher/name perché l'account `Allan-Nava` non è più accessibile — l'org GitHub resta `Allan-Nava`._
 
 ## Layout
 
-- `src/extension.ts` — entrypoint: `activate()` registra i 6 comandi (`vanilla-bloc.new-*`), ognuno chiede nome/cartella e scrive un file `.dart`.
+- `src/extension.ts` — entrypoint (solo command/UI layer): `activate()` registra i 6 comandi (`vanilla-bloc-generator.new-*`), ognuno chiede nome/cartella e delega a `src/generators.ts` che scrive un file `.dart`.
 - `src/templates/*.template.ts` — funzioni `get*Template()` che ritornano stringhe Dart. Riesportate dal barrel `src/templates/index.ts`.
 - `src/utils/index.ts` — attualmente vuoto (solo header).
 - `src/test/` — suite Mocha via `vscode-test` (`runTest.ts` + `suite/`), oggi solo un test placeholder.

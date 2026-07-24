@@ -8,6 +8,14 @@ non ancora rilasciato; `scripts/new-release.sh` la promuove a versione datata.
 
 ## [Unreleased]
 
+### Changed
+- **`name`: `vanilla-bloc` → `vanilla-bloc-generator`** (il `name` è univoco su
+  tutto il Marketplace e `vanilla-bloc` è già occupato dal vecchio listing).
+  `displayName` "Vanilla BLoC Flutter" invariato. Nuovo id:
+  `allannava95.vanilla-bloc-generator`.
+- Command id allineati: `vanilla-bloc.new-*` → `vanilla-bloc-generator.new-*`
+  (manifest `contributes`/`menus`/`activationEvents` + `registerCommand`).
+
 ## [0.2.3] - 2026-07-24
 
 ### Fixed

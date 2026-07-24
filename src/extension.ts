@@ -25,16 +25,16 @@ type FolderGenerator = (targetDirectory: string) => Promise<string>;
 
 export function activate(context: ExtensionContext): void {
 	context.subscriptions.push(
-		commands.registerCommand('vanilla-bloc.new-bloc', (uri: Uri) => runNewBloc(uri)),
-		commands.registerCommand('vanilla-bloc.new-snapshot',
+		commands.registerCommand('vanilla-bloc-generator.new-bloc', (uri: Uri) => runNewBloc(uri)),
+		commands.registerCommand('vanilla-bloc-generator.new-snapshot',
 			(uri: Uri) => runInFolder(uri, generators.generateSnapShotCode, "Snapshot")),
-		commands.registerCommand('vanilla-bloc.new-bloc-base',
+		commands.registerCommand('vanilla-bloc-generator.new-bloc-base',
 			(uri: Uri) => runInFolder(uri, generators.generateVanillaBLoCCode, "Vanilla BLoC Base")),
-		commands.registerCommand('vanilla-bloc.new-bloc-singleton',
+		commands.registerCommand('vanilla-bloc-generator.new-bloc-singleton',
 			(uri: Uri) => runInFolder(uri, generators.createSingletonBlocCode, "Singleton Base Bloc")),
-		commands.registerCommand('vanilla-bloc.new-bloc-event-state-builder',
+		commands.registerCommand('vanilla-bloc-generator.new-bloc-event-state-builder',
 			(uri: Uri) => runInFolder(uri, generators.createBlocEventStateBuilderCode, "Vanilla Bloc Event State Builder")),
-		commands.registerCommand('vanilla-bloc.new-bloc-event-state',
+		commands.registerCommand('vanilla-bloc-generator.new-bloc-event-state',
 			(uri: Uri) => runInFolder(uri, generators.createBlocEventStateCode, "Vanilla Bloc Event State")),
 	);
 }
